@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container-fluid">
+    {% if form.id %}
+    <h1>Edit Counter-party</h1>
+    <form action="{{ url_for('department.edit', department_id=form.id) }}" method="post">
+        <input type="number" name="department_id" value="{{ form.id }}" hidden>
+        {% else %}
+    <h1>Add Counter-party</h1>
+    <form action="{{ url_for('department.add') }}" method="post">
+        {% endif %}
+    
+        <div class="row">
+            <div class="col-4">
+                <label for="department_name">Counter-party Name</label>
+            </div>
+            <div class="col-8">
+                <input type="text" name="department_name" value="{{ form.department_name }}" class="form-control">
+                {% if form.errors.get('department_name') %}
+                <p style="color: red;">{{ form.errors.get('department_name') }}</p>
+                {% endif %}
+            </div>
+        </div>
+        <input type="submit" value="Save">
+    </form>
+</div>
+{% endblock %}

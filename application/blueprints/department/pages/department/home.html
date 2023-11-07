@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Counter-parties</h1>
+<a href="{{ url_for('department.add') }}" class="btn btn-success">Add Counter-party</a>
+
+<table class="table table-striped table-dark">
+    <tr>
+        <th>Counter-party Name</th>
+        <th>Action</th>
+    </tr>
+    {% for department in departments %}
+    <tr>
+        <td>{{ department.department_name }}</td>
+        <td>
+            <a href="{{ url_for('department.edit', department_id=department.id) }}" class="btn btn-success">Edit</a>
+            <a href="{{ url_for('department.delete', department_id=department.id) }}" class="btn btn-danger" onclick="return confirmDelete();">Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
